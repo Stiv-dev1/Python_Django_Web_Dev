@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block cart %}
+     <div class="cart-div">
+        <div class="right">
+           <i class="fa fa-cart-arrow-down"><sup class="cart-total">{{ cartItems }} </sup></label> </i>
+
+        </div>
+    </div>
+{% endblock %}
+{% block base %}
+
+
+    <div class="container start">
+    <div class="row one ">
+
+		{% for product in products %}
+		<div class="col-lg-4">
+        <img class="thumbnail" src="{{product.imageUrl}}">
+			<div class="box-element product">
+				<h6 class="jina"><strong>{{product.name}}</strong></h6>
+				<hr>
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary  add-btn update-cart">Add to Cart</button>
+				<a class="btn btn-outline-danger" href="#">View</a>
+				<h4 style="display: inline-block; float: right"><strong>Ksh {{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+    </div>
+{% endblock %}

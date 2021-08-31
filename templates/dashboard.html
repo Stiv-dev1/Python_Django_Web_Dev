@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block base %}
+        <button id="togglebtn" onclick="sidebar()" >
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+    <div class="sidebar maigint">
+        <ul class = "list-group">
+         <div class="container">
+               <img src="{{ user.profile.image.url }}" alt=" " class="dashboard-profile"/> &nbsp
+             <label class="disp"> {{ user.username }}</label>
+              <button class="float-right" id="toggle-close" onclick="toggleclose()" >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+               </button>
+
+         </div>
+                <li class="list-group-item ">
+                   <a href="{% url 'dashboard'%}"> <i class="fa fa-dashboard">  </i> &nbsp Dashboard</a>
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    <a href="{% url 'profile'%}"> <i class="fa fa-user" aria-hidden="true"></i> &nbsp My Profile</a>
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    <a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>  &nbsp My Orders </a>
+                <li class="list-group-item list-group-item-action">
+                    <a href="{% url 'blog'%}"> <i class="fa fa-rss-square" aria-hidden="false"></i> &nbsp Read Blogs</a>
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp Settings</a>
+                </li>
+
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item ">
+                     <a> Free vpn Login</a>
+                </li>
+                <li>
+
+                     <ul style="background-color: #453433; font-size:34px; color: #00ffff; ">
+						<li class="list-inline-item"><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.instagram"><i class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+			         </ul>
+                </li>
+            </ul>
+                <div class="card text-center" >
+                      <div class="card-body " style="background-color:#453433">
+                        <h4 class="card-title">Online Work </h4>
+                        <p class="card-text">Make some good amount of cash.</p>
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                      </div>
+                </div>
+
+        </div>
+
+    <div class="main-content margint">
+     {% block profile %}
+        <div class="card border-success ">
+         <div class="card-body">
+           <h1 class="card-title"> You're in! &nbsp {{user.username}}</h1>
+            <p class="card-subtitle mb-2 text-muted"> You can read some blogs and get free vpn logins</p>
+         </div>
+        </div>
+
+<div class="row">
+ {% if user.is_staff or user.is_superuser %}
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title text-primary ">Create New Post</h5>
+        <p class="card-text"> Remember plagiarism free, well researched, authentic content </p>
+        <a href="{% url 'createpost' %}" class="btn btn-primary">Create Post</a>
+      </div>
+    </div>
+  </div>
+    {% endif %}
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title text-danger">Get a Free Vpn Account </h5>
+        <p class="card-text ">Spend a few minutes reading some tech reviews and claim your free vpn</p>
+        <a href="#" class="btn btn-danger" style="text-align: center">Claim VPN</a>
+      </div>
+    </div>
+  </div>
+</div>
+    {%endblock%}
+
+</div>
+
+
+{% endblock %}
